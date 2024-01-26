@@ -46,6 +46,7 @@ jobs:
           unityVersion: ${{ env.UNITY_VERSION }}
           allowDirtyBuild: true
           targetPlatform: WebGL
+          customParameters: -WebGLCompressionFormat Gzip
 
       # Output
       - uses: actions/upload-pages-artifact@v3
