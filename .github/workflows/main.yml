@@ -50,7 +50,7 @@ jobs:
       # Output
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: build/WebGL
 
   deploy:
     environment:
