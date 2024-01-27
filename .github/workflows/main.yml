@@ -11,6 +11,8 @@ jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
+    outputs:
+      buildVersion: ${{ steps.myBuildStep.outputs.buildVersion }}
     steps:
       # Checkout
       - name: Checkout repository
@@ -84,4 +86,4 @@ jobs:
           itchUsername: ${{env.ITCH_USERNAME}}
           itchGameId: ${{ env.ITCH_GAME_ID }}
           buildChannel: webgl
-          buildNumber: ${{ needs.version.outputs.version_hash }}
+          buildNumber: ${{ needs.build.outputs.buildVersion }}
