@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using Entity;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResultItem : MonoBehaviour
 {
     public TMP_Text puzzleName;
     public TMP_Text score;
+    public Slider filled;
     
-    public void SetResultItem(PuzzleType puzzleType, double score)
+    public void SetResultItem(PuzzleType puzzleType, double score, double maxScore)
     {
         puzzleName.text = puzzleType.ToString();
         this.score.text = FormatScore(score);
+        filled.value = (float) (score / maxScore);
     }
 
     private static string FormatScore(double score)

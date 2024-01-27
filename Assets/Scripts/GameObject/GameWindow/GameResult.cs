@@ -17,16 +17,31 @@ public class GameResult : MonoBehaviour
     void Start()
     {
         _scores = _gameCommand.GetScores();
-        StartCoroutine(BuildResultItems(_scores, 1.0f));
+        double maxScore = GetMaxScore();
+        StartCoroutine(BuildResultItems(_scores, maxScore, 1.0f));
     }
     
-    public IEnumerator BuildResultItems(Dictionary<PuzzleType, double> scores, float waitTime)
+    public double GetMaxScore()
+    {
+        double maxScore = 0;
+        foreach (var score in _scores)
+        {
+            if (score.Value > maxScore)
+            {
+                maxScore = score.Value;
+            }
+        }
+
+        return maxScore;
+    }
+    
+    public IEnumerator BuildResultItems(Dictionary<PuzzleType, double> scores, double maxScore, float waitTime)
     {
         yield return new WaitForSeconds((float) waitTime);
         foreach (var score in scores)
         {
             ResultItem resultItem = Instantiate(resultPrefab, resultPanel.transform);
-            resultItem.SetResultItem(score.Key, score.Value);
+            resultItem.SetResultItem(score.Key, score.Value, maxScore);
         }
 
         yield return new WaitForSeconds(waitTime);
