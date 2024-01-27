@@ -21,5 +21,10 @@ namespace Entity
         {
             return EndAt - StartAt;
         }
+        
+        public double Delta(double time)
+        {
+            return time - StartAt;
+        }
     }
 }
