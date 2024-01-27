@@ -978,10 +978,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1543453678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fbb79d1f5fcac418d0f1a94d7d3598, type: 3}
+  m_Script: {fileID: 11500000, guid: 73a547977739592498b0f8a8a80ee5c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 100
 --- !u!1 &1570567656
 GameObject:
   m_ObjectHideFlags: 0
