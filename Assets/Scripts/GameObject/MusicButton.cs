@@ -13,9 +13,12 @@ public class MusicButton:MonoBehaviour
     public GameObject turnOff;
     public void Start()
     {
-        var button = GetComponent<Button>();
+        var button = turnOn.GetComponent<Button>();
+        
+    
         
         button.onClick.AddListener(Unlock);
+        
         
     }
 
