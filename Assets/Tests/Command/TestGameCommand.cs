@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Command;
 using Entity;
 using NUnit.Framework;
@@ -23,16 +24,30 @@ namespace Tests.Command
             _scoreRepository = new ScoreRepository();
             _puzzleRepository = ScriptableObject.CreateInstance<PuzzleRepository>();
 
-            _puzzleRepository.Puzzles = new Puzzle[]
+            _puzzleRepository.Puzzles = new []
             {
                 new Puzzle(PuzzleType.BootProgram,
-                    new LockType[]
+                    new []
                     {
                         LockType.MusicPlaying
                     })
             };
 
             _gameCommand = new GameCommand(_gameRepository, _scoreRepository, _puzzleRepository);
+            yield return null;
+        }
+
+        [UnityTest]
+        public IEnumerator GetScores()
+        {
+            _scoreRepository.Add(PuzzleType.BootProgram, 1.0);
+            _scoreRepository.Add(PuzzleType.BootProgram, 2.0);
+            _scoreRepository.Add(PuzzleType.LoadingScreen, 3.0);
+            
+            Dictionary<PuzzleType, double> scores = _gameCommand.GetScores();
+            Assert.AreEqual(1.0, scores[PuzzleType.BootProgram]);
+            Assert.AreEqual(3.0, scores[PuzzleType.LoadingScreen]);
+
             yield return null;
         }
 
