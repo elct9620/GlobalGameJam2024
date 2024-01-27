@@ -8,11 +8,11 @@ using UnityEngine.SceneManagement;
 
 public class Enterance : MonoBehaviour
 {
-    [Inject] private readonly Command.Puzzle _puzzle;
+    [Inject] private readonly Command.PuzzleCommand _puzzleCommand;
 
     public void StartGame()
     {
-        _puzzle.ResetAll();
-        _puzzle.Start(PuzzleType.BootProgram, Time.time);
+        _puzzleCommand.ResetAll();
+        _puzzleCommand.Start(PuzzleType.BootProgram, Time.time);
     }
 }

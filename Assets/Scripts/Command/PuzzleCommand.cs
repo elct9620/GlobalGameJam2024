@@ -10,12 +10,12 @@ namespace Command
         
     }
     
-    public class Puzzle {
+    public class PuzzleCommand {
         private readonly Score _score;
         private readonly Repository.Puzzle _puzzle;
         private readonly Game _game;
 
-        public Puzzle(Game game, Score score)
+        public PuzzleCommand(Game game, Score score)
         {
             _game = game;
             _score = score;
