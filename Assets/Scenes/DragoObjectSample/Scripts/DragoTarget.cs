@@ -5,8 +5,6 @@ namespace Scenes.DragoObjectSample.Scripts
 {
     public class DragoTarget:MonoBehaviour
     {
-        public string Name;
-
         public void Start()
         {
             var boxCollider2D = GetComponent<BoxCollider2D>();

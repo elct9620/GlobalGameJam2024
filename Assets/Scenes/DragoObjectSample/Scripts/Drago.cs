@@ -18,13 +18,15 @@ namespace Scenes.DragoObjectSample.Scripts
             {
                 var targetObject = Physics2D.OverlapPoint(mousePosition);
 
-                var target = targetObject.GetComponent<DragoTarget>();
+               
                 
-                if (targetObject && target is not null)
+                if (targetObject)
                 {
-                    _selectedObject = targetObject.transform.gameObject;
-                    _offset = _selectedObject.transform.position - mousePosition;
-                    Debug.Log("這是"  + target.Name);
+                    if (targetObject.GetComponent<DragoTarget>())
+                    {
+                        _selectedObject = targetObject.transform.gameObject;
+                        _offset = _selectedObject.transform.position - mousePosition;
+                    }
                 }
             }
             if (_selectedObject)
