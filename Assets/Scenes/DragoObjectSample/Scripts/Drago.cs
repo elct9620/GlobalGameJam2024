@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Scenes.DragoObjectSample.Scripts
 {
     /// <summary>
     ///  https://gamedevbeginner.com/how-to-move-an-object-with-the-mouse-in-unity-in-2d/
     /// </summary>
-    public class Drago:MonoBehaviour
+    public class Drago:MonoBehaviour,IPointerClickHandler
     {
         private GameObject _selectedObject;
+        private GameObject _uguiSelect; 
         private Vector3 _offset;
-        
+
 
         void Update()
         {
@@ -36,6 +38,14 @@ namespace Scenes.DragoObjectSample.Scripts
                 _selectedObject = null;
             }
         }
-        
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.pointerCurrentRaycast.gameObject != null)
+            {
+                GameObject clickedObject = eventData.pointerCurrentRaycast.gameObject;
+                Debug.Log("Clicked on: " + clickedObject.name);
+            }
+        }
     }
 }

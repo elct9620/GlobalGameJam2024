@@ -11,9 +11,11 @@ namespace Scenes.DragoObjectSample.Scripts
 
             if (boxCollider2D is null) throw new NullReferenceException("找不到2D碰撞");
             
-            var component = GetComponent<Rigidbody2D>();
+            var rigidbody2D = GetComponent<Rigidbody2D>();
 
-            if (component is null) throw new NullReferenceException("找不到2D剛體");
+            if (rigidbody2D is null) throw new NullReferenceException("找不到2D剛體");
+            
+            rigidbody2D.gravityScale = 0;
         }
     }
 

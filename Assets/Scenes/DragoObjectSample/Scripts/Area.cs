@@ -11,6 +11,8 @@ namespace Scenes.DragoObjectSample.Scripts
             var boxCollider2D = GetComponent<BoxCollider2D>();
 
             if (boxCollider2D is null) throw new NullReferenceException("找不到2D碰撞");
+            
+            boxCollider2D.isTrigger = true;
         }
         
         private void OnTriggerEnter2D(Collider2D collision)
