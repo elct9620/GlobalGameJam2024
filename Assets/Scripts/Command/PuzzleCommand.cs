@@ -31,9 +31,9 @@ namespace Command
            if (_gameRepository.CurrentPuzzle == null)
            {
                return 0;
-           } 
-           
-           return current - _gameRepository.CurrentPuzzleStartTime;
+           }
+
+           return _gameRepository.DeltaTime(current);
         }
     }
 }

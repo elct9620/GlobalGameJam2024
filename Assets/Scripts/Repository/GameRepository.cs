@@ -22,6 +22,16 @@ namespace Repository
             CurrentPuzzleStartTime = time;
         } 
         
+        public double DeltaTime(double current)
+        {
+            if (CurrentPuzzle == null)
+            {
+                return 0;
+            } 
+            
+            return current - CurrentPuzzleStartTime;
+        }
+        
         public void Reset()
         {
             CurrentPuzzle = null;
