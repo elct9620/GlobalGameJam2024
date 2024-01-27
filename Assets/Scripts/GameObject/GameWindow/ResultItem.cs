@@ -12,6 +12,15 @@ public class ResultItem : MonoBehaviour
     public void SetResultItem(PuzzleType puzzleType, double score)
     {
         puzzleName.text = puzzleType.ToString();
-        this.score.text = score.ToString();
+        this.score.text = FormatScore(score);
+    }
+
+    private static string FormatScore(double score)
+    {
+        int hour = (int) score / 3600;
+        int minute = (int) (score % 3600) / 60;
+        int second = (int) (score % 3600) % 60;
+        
+        return $"{hour:D2}:{minute:D2}:{second:D2}";
     }
 }
