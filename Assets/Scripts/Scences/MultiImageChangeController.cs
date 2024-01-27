@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Scenes
 {
-    public class MultiImageChangeButton:MonoBehaviour
+    public class MultiImageChangeController:MonoBehaviour
     {
         public List<Button> Buttons;
         public Image Image;
