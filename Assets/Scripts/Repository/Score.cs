@@ -1,19 +1,20 @@
 using System.Collections.Generic;
+using Entity;
 
 namespace Repository
 {
     public class Score
     {
-        private readonly Dictionary<string, double> _scores = new();
+        private readonly Dictionary<PuzzleType, double> _scores = new();
         
-        public double Get(string name)
+        public double Get(PuzzleType type)
         {
-            if (!_scores.ContainsKey(name))
+            if (!_scores.ContainsKey(type))
             {
                 return 0;
             }
             
-            return _scores[name];
+            return _scores[type];
         }
         
         public void Reset()
@@ -21,14 +22,14 @@ namespace Repository
             _scores.Clear();
         }
 
-        public void Add(string name, double score)
+        public void Add(PuzzleType type, double score)
         {
-            if (_scores.ContainsKey(name))
+            if (_scores.ContainsKey(type))
             {
                 return;
             }
             
-            _scores.Add(name, score);
+            _scores.Add(type, score);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using Entity;
 using Reflex.Attributes;
 using Repository;
 using UnityEngine.SceneManagement;
@@ -30,18 +31,18 @@ namespace Command
             _score.Reset();
         }
 
-        public void Start(string name, double time)
+        public void Start(PuzzleType type, double time)
         {
             if (_game.CurrentPuzzle != null)
             {
                 throw new PuzzleStartError();
             }
             
-            Entity.Puzzle puzzle = new Entity.Puzzle(name, time);
+            Entity.Puzzle puzzle = new Entity.Puzzle(type, time);
             _game.SetPuzzle(puzzle);
         }
 
-        public void End(string name, double time)
+        public void End(PuzzleType type, double time)
         {
             Entity.Puzzle puzzle = _game.CurrentPuzzle;
             if (puzzle == null)
@@ -49,13 +50,13 @@ namespace Command
                 return;
             }
             
-            if (puzzle.Name != name)
+            if (puzzle.Type != type)
             {
                 return;
             }
             
             puzzle.End(time);
-            _score.Add(puzzle.Name, puzzle.Delta());
+            _score.Add(puzzle.Type, puzzle.Delta());
             _game.SetPuzzle(null);
         }
     }   

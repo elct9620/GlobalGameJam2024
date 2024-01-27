@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Command;
+using Entity;
 using NUnit.Framework;
 using Repository;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Puzzle = Command.Puzzle;
 
 namespace Tests.Command
 {
@@ -25,29 +26,29 @@ namespace Tests.Command
         public void Test_StartPuzzle()
         {
             
-            Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
-            _puzzle.Start(puzzle.Name, puzzle.StartAt);
-            Assert.AreEqual(puzzle.Name, _game.CurrentPuzzle.Name);
+            Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
+            _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
+            Assert.AreEqual(puzzle.Type, _game.CurrentPuzzle.Type);
         }
         
         [Test]
         public void Test_EndPuzzle()
         {
-            Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
-            _puzzle.Start(puzzle.Name, puzzle.StartAt);
-            _puzzle.End("Test", 2.0);
-            Assert.AreEqual(1.0, _score.Get(puzzle.Name));
+            Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
+            _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
+            _puzzle.End(PuzzleType.BootProgram, 2.0);
+            Assert.AreEqual(1.0, _score.Get(PuzzleType.BootProgram));
         }
         
         [Test]
         public void Test_ResetLevel()
         {
             
-            Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
-            _puzzle.Start(puzzle.Name, puzzle.StartAt);
-            _puzzle.End("Test", 2.0);
+            Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
+            _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
+            _puzzle.End(PuzzleType.BootProgram, 2.0);
             _puzzle.ResetAll();
-            Assert.AreEqual(0, _score.Get("Test"));
+            Assert.AreEqual(0, _score.Get(PuzzleType.BootProgram));
         }
     }
 }

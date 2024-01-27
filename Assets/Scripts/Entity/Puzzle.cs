@@ -2,13 +2,13 @@ namespace Entity
 {
     public class Puzzle
     {
-        public string Name { get; private set; }
+        public PuzzleType Type { get; private set; }
         public double StartAt { get; private set; }
         public double EndAt { get; private set; }
         
-        public Puzzle(string name, double time)
+        public Puzzle(PuzzleType type, double time)
         {
-            Name = name;
+            Type = type;
             StartAt = time;
         }
         
