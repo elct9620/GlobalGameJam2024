@@ -11,8 +11,5 @@ namespace Event
         {
             this.type = type;
         }
-
-        [CreateAssetMenu(fileName = "ResolveEvent", menuName = "Events/ResolveEvent", order = 2)]
-        public class ResolveEventAsset : GameEvent<ResolveEvent>{}
     }
 }
