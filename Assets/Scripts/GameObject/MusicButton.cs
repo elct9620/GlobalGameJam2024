@@ -23,13 +23,16 @@ public class MusicButton:MonoBehaviour
 
     private void TurnOff()
     {
-        
+         
+        _unlockCommand.Unlock(LockType.MusicPlaying, Time.time);
         Animator.enabled = false;
         turnOff.SetActive(true);
         turnOn.SetActive(false);
     }
     private void TurnOn()
     {
+         
+      
         Animator.enabled = true;
         turnOff.SetActive(false);
         turnOn.SetActive(true);
