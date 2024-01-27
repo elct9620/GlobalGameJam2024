@@ -1,4 +1,5 @@
 using Reflex.Attributes;
+using Repository;
 using UnityEngine.SceneManagement;
 using Score = Repository.Score;
 
@@ -6,11 +7,11 @@ namespace Command
 {
     public class Puzzle {
         private readonly Score _score;
-        private string _name;
-        private double _startAt;
+        private readonly Game _game;
 
-        public Puzzle(Score score)
+        public Puzzle(Game game, Score score)
         {
+            _game = game;
             _score = score;
         }
         
@@ -19,15 +20,22 @@ namespace Command
             _score.Reset();
         }
 
-        public void Start(double time)
+        public void Start(string name, double time)
         {
-            _startAt = time;
+            Entity.Puzzle puzzle = new Entity.Puzzle(name, time);
+            _game.SetPuzzle(puzzle);
         }
 
         public void End(double time)
         {
-            Scene current = SceneManager.GetActiveScene();
-            _score.Add(current.name, time - _startAt);
+            Entity.Puzzle puzzle = _game.CurrentPuzzle;
+            if (puzzle != null)
+            {
+                puzzle.End(time);
+                _score.Add(puzzle.Name, puzzle.Delta());
+            }
+            
+            _game.SetPuzzle(null);
         }
     }   
 }

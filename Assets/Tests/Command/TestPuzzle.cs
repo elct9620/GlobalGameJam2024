@@ -12,44 +12,42 @@ namespace Tests.Command
     {
         private Puzzle _puzzle;
         private Score _score;
+        private Game _game;
         
         [SetUp] public void Setup()
         {
            _score = new Score();
-           _puzzle = new Puzzle(_score); 
+           _game = new Game();
+           _puzzle = new Puzzle(_game, _score); 
         } 
         
-        [UnityTest]
-        public IEnumerator Test_StartLevel()
+        [Test]
+        public void Test_StartPuzzle()
         {
-            Scene current = new Scene
-            {
-                name = "Test"
-            };
-            SceneManager.SetActiveScene(current);
             
-            _puzzle.Start( 1.0);
-            _puzzle.End(2.0);
-            Assert.AreEqual(1.0, _score.Get("Test"));
-            
-            yield return null;
+            Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
+            _puzzle.Start(puzzle.Name, puzzle.StartAt);
+            Assert.AreEqual(puzzle.Name, _game.CurrentPuzzle.Name);
         }
         
-        [UnityTest]
-        public IEnumerator Test_ResetLevel()
+        [Test]
+        public void Test_EndPuzzle()
         {
-            Scene current = new Scene
-            {
-                name = "Test"
-            };
-            SceneManager.SetActiveScene(current);
+            Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
+            _puzzle.Start(puzzle.Name, puzzle.StartAt);
+            _puzzle.End(2.0);
+            Assert.AreEqual(1.0, _score.Get(puzzle.Name));
+        }
+        
+        [Test]
+        public void Test_ResetLevel()
+        {
             
-            _puzzle.Start( 1.0);
+            Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
+            _puzzle.Start(puzzle.Name, puzzle.StartAt);
             _puzzle.End(2.0);
             _puzzle.ResetAll();
             Assert.AreEqual(0, _score.Get("Test"));
-            
-            yield return null;
         }
     }
 }
