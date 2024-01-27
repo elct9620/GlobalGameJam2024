@@ -11,6 +11,7 @@ namespace Command
         public UnlockCommand(GameRepository gameRepository, ScoreRepository scoreRepository)
         {
             _gameRepository = gameRepository;
+            _scoreRepository = scoreRepository;
         }
 
         public bool Unlock(LockType type, double time)
