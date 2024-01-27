@@ -7,18 +7,18 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public TMP_Text uiText;
-    [Inject] private readonly Game _game;
+    [Inject] private readonly GameRepository _gameRepository;
 
     // Update is called once per frame
     void Update()
     {
-        if (_game.CurrentPuzzle == null)
+        if (_gameRepository.CurrentPuzzle == null)
         {
             uiText.text = "0.00";
             return;
         }
         
-        double delta = Time.time - _game.CurrentPuzzleStartTime;
+        double delta = Time.time - _gameRepository.CurrentPuzzleStartTime;
         uiText.text = delta.ToString("F2");
     }
 }

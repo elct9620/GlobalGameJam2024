@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Repository
 {
-    public class Game
+    public class GameRepository
     {
         public Entity.Puzzle CurrentPuzzle { get; private set; } = null;
         public double CurrentPuzzleStartTime { get; private set;  } = 0;

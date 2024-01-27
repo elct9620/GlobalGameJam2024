@@ -13,17 +13,17 @@ namespace Command
     public class PuzzleCommand {
         private readonly Score _score;
         private readonly Repository.Puzzle _puzzle;
-        private readonly Game _game;
+        private readonly GameRepository _gameRepository;
 
-        public PuzzleCommand(Game game, Score score)
+        public PuzzleCommand(GameRepository gameRepository, Score score)
         {
-            _game = game;
+            _gameRepository = gameRepository;
             _score = score;
         }
 
         public Entity.Puzzle Current()
         {
-            return _game.CurrentPuzzle;
+            return _gameRepository.CurrentPuzzle;
         }
         
         public void ResetAll()
@@ -33,19 +33,19 @@ namespace Command
 
         public void Start(PuzzleType type, double time)
         {
-            if (_game.CurrentPuzzle != null)
+            if (_gameRepository.CurrentPuzzle != null)
             {
                 throw new PuzzleStartError();
             }
             
             
             Entity.Puzzle puzzle = _puzzle.Find(type);
-            _game.SetPuzzle(puzzle);
+            _gameRepository.SetPuzzle(puzzle);
         }
 
         public void End(PuzzleType type, double time)
         {
-            Entity.Puzzle puzzle = _game.CurrentPuzzle;
+            Entity.Puzzle puzzle = _gameRepository.CurrentPuzzle;
             if (puzzle == null)
             {
                 return;
@@ -56,9 +56,9 @@ namespace Command
                 return;
             }
             
-            double delta = time - _game.CurrentPuzzleStartTime;
+            double delta = time - _gameRepository.CurrentPuzzleStartTime;
             _score.Add(puzzle.type, delta);
-            _game.SetPuzzle(null);
+            _gameRepository.SetPuzzle(null);
         }
     }   
 }

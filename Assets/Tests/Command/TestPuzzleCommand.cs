@@ -15,7 +15,7 @@ namespace Tests.Command
     {
         private PuzzleCommand _puzzleCommand;
         private Score _score;
-        private Game _game;
+        private GameRepository _gameRepository;
         
         [UnitySetUp] public void Setup()
         {
@@ -26,15 +26,15 @@ namespace Tests.Command
             };
             
            _score = new Score();
-           _game = new Game();
-           _puzzleCommand = new PuzzleCommand(_game, _score); 
+           _gameRepository = new GameRepository();
+           _puzzleCommand = new PuzzleCommand(_gameRepository, _score); 
         } 
         
         [UnityTest]
         public IEnumerator Test_StartPuzzle()
         {
             _puzzleCommand.Start(PuzzleType.BootProgram, 1.0);
-            Assert.AreEqual(PuzzleType.BootProgram, _game.CurrentPuzzle.type);
+            Assert.AreEqual(PuzzleType.BootProgram, _gameRepository.CurrentPuzzle.type);
             
             yield return null;
         }

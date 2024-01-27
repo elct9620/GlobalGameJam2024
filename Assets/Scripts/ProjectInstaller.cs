@@ -10,7 +10,7 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
     {
         builder.AddSingleton(puzzleConstraint);
         builder.AddSingleton(typeof(Repository.Score));
-        builder.AddSingleton(typeof(Repository.Game));
+        builder.AddSingleton(typeof(Repository.GameRepository));
         builder.AddSingleton(typeof(Command.PuzzleCommand));
     }
 }
