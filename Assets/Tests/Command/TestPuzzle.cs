@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Dataset;
 using Entity;
 using NUnit.Framework;
 using Repository;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using Puzzle = Command.Puzzle;
@@ -15,40 +17,47 @@ namespace Tests.Command
         private Score _score;
         private Game _game;
         
-        [SetUp] public void Setup()
+        [UnitySetUp] public void Setup()
         {
+            PuzzleConstraint dataset = ScriptableObject.CreateInstance<PuzzleConstraint>();
+            dataset.Puzzles = new Entity.Puzzle[]
+            {
+               new Entity.Puzzle(PuzzleType.BootProgram, new LockType[] { }) 
+            };
+            
            _score = new Score();
            _game = new Game();
            _puzzle = new Puzzle(_game, _score); 
         } 
         
-        [Test]
-        public void Test_StartPuzzle()
+        [UnityTest]
+        public IEnumerator Test_StartPuzzle()
         {
+            _puzzle.Start(PuzzleType.BootProgram, 1.0);
+            Assert.AreEqual(PuzzleType.BootProgram, _game.CurrentPuzzle.type);
             
-            Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
-            _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
-            Assert.AreEqual(puzzle.type, _game.CurrentPuzzle.type);
+            yield return null;
         }
         
-        [Test]
-        public void Test_EndPuzzle()
+        [UnityTest]
+        public IEnumerator Test_EndPuzzle()
         {
-            Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
-            _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
+            _puzzle.Start(PuzzleType.BootProgram, 1.0);
             _puzzle.End(PuzzleType.BootProgram, 2.0);
             Assert.AreEqual(1.0, _score.Get(PuzzleType.BootProgram));
+            
+            yield return null;
         }
         
-        [Test]
-        public void Test_ResetLevel()
+        [UnityTest]
+        public IEnumerator Test_ResetLevel()
         {
-            
-            Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
-            _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
+            _puzzle.Start(PuzzleType.BootProgram, 1.0);
             _puzzle.End(PuzzleType.BootProgram, 2.0);
             _puzzle.ResetAll();
             Assert.AreEqual(0, _score.Get(PuzzleType.BootProgram));
+            
+            yield return null;
         }
     }
 }

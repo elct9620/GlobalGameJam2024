@@ -8,14 +8,9 @@ namespace Scenes
     /// </summary>
     public class DragoObject:MonoBehaviour
     {
-        public GameObject selectedObject;
+        private GameObject selectedObject;
         private Vector3 _offset;
-
-        public void Start()
-        {
-           var boxCollider2D =  selectedObject.GetComponent<BoxCollider2D>();
-           if (boxCollider2D is null) throw new NullReferenceException("物件沒有設定(BoxCollider2D)碰撞");
-        }
+        
 
         void Update()
         {
