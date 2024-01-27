@@ -15,6 +15,7 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
         builder.AddSingleton(typeof(GameEvent<ResolveEvent>));
         builder.AddSingleton(typeof(ScoreRepository));
         builder.AddSingleton(typeof(GameRepository));
+        builder.AddSingleton(typeof(GameCommand));
         builder.AddSingleton(typeof(PuzzleCommand));
         builder.AddSingleton(typeof(UnlockCommand));
     }
