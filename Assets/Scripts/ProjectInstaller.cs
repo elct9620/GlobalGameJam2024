@@ -6,6 +6,7 @@ public class ProjectInstaller : MonoBehaviour, IInstaller
     public void InstallBindings(ContainerBuilder builder)
     {
         builder.AddSingleton(typeof(Repository.Score));
+        builder.AddSingleton(typeof(Repository.Game));
         builder.AddSingleton(typeof(Command.Puzzle));
     }
 }

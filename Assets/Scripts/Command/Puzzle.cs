@@ -19,6 +19,11 @@ namespace Command
             _game = game;
             _score = score;
         }
+
+        public Entity.Puzzle Current()
+        {
+            return _game.CurrentPuzzle; 
+        }
         
         public void ResetAll()
         {

@@ -11,5 +11,7 @@ public class Enterance : MonoBehaviour
 
     public void StartGame()
     {
+        _puzzle.ResetAll();
+        _puzzle.Start("Game", Time.time);
     }
 }
