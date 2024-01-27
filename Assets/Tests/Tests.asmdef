@@ -4,8 +4,7 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Repository",
-        "Command"
+        "Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
