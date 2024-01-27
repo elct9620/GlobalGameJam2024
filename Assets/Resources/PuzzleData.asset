@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1426737cbb6534372a1dc43b0ae34253, type: 3}
-  m_Name: PuzzleConstraint
+  m_Script: {fileID: 11500000, guid: 3022e591934548e6b52370fc1d9fdc67, type: 3}
+  m_Name: PuzzleData
   m_EditorClassIdentifier: 
   Puzzles: []

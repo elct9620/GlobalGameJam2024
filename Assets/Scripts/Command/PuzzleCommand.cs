@@ -11,7 +11,7 @@ namespace Command
     
     public class PuzzleCommand {
         private readonly ScoreRepository _scoreRepository;
-        private readonly Repository.Puzzle _puzzle;
+        private readonly PuzzleRepository _puzzle;
         private readonly GameRepository _gameRepository;
 
         public PuzzleCommand(GameRepository gameRepository, ScoreRepository scoreRepository)

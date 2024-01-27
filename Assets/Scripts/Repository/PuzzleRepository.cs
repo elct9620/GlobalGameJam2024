@@ -1,10 +1,10 @@
 using Entity;
 using UnityEngine;
 
-namespace Dataset
+namespace Repository
 {
-    [CreateAssetMenu(fileName = "PuzzleConstraint", menuName = "ScriptableObjects/PuzzleConstraint", order = 1)]
-    public class PuzzleConstraint : ScriptableObject
+    [CreateAssetMenu(fileName = "PuzzleData", menuName = "ScriptableObjects/PuzzleData", order = 1)]
+    public class PuzzleRepository : ScriptableObject
     {
         public Puzzle[] Puzzles;
 

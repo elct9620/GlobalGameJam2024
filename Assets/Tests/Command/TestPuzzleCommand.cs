@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Command;
-using Dataset;
 using Entity;
 using NUnit.Framework;
 using Repository;
@@ -19,10 +18,10 @@ namespace Tests.Command
         
         [UnitySetUp] public void Setup()
         {
-            PuzzleConstraint dataset = ScriptableObject.CreateInstance<PuzzleConstraint>();
-            dataset.Puzzles = new Entity.Puzzle[]
+            PuzzleRepository dataset = ScriptableObject.CreateInstance<PuzzleRepository>();
+            dataset.Puzzles = new Puzzle[]
             {
-               new Entity.Puzzle(PuzzleType.BootProgram, new LockType[] { }) 
+               new Puzzle(PuzzleType.BootProgram, new LockType[] { }) 
             };
             
            _scoreRepository = new ScoreRepository();
