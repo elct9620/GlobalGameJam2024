@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2625588537595161575}
   - component: {fileID: 4585519144287519350}
   - component: {fileID: 8237910251093803289}
+  - component: {fileID: 621360462668468429}
   m_Layer: 0
   m_Name: ProjectScope
   m_TagString: Untagged
@@ -58,3 +59,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleRepository: {fileID: 11400000, guid: 16dd12f7b46e747bfa8c774fd66dd4ce, type: 2}
+--- !u!114 &621360462668468429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707096030927831248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6b02acb63541fd8653371137a96102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unlockEvent: {fileID: 11400000, guid: 1e350d097e6724481832caf9e1287227, type: 2}
