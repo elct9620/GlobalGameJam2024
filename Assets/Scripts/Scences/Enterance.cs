@@ -12,7 +12,6 @@ public class Enterance : MonoBehaviour
 
     public void StartGame()
     {
-        _puzzleCommand.ResetAll();
         _puzzleCommand.Start(PuzzleType.BootProgram, Time.time);
     }
 }

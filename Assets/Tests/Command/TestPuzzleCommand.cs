@@ -5,7 +5,6 @@ using Entity;
 using NUnit.Framework;
 using Repository;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 namespace Tests.Command
@@ -13,48 +12,36 @@ namespace Tests.Command
     public class TestPuzzleCommand
     {
         private PuzzleCommand _puzzleCommand;
-        private ScoreRepository _scoreRepository;
-        private GameRepository _gameRepository;
-        
-        [UnitySetUp] public void Setup()
+        [UnitySetUp] public IEnumerator SetUp()
         {
-            PuzzleRepository dataset = ScriptableObject.CreateInstance<PuzzleRepository>();
-            dataset.Puzzles = new Puzzle[]
+            PuzzleRepository puzzleRepository = ScriptableObject.CreateInstance<PuzzleRepository>();
+            puzzleRepository.Puzzles = new[]
             {
-               new Puzzle(PuzzleType.BootProgram, new LockType[] { }) 
+                new Puzzle(PuzzleType.BootProgram, new LockType[] { })
             };
             
-           _scoreRepository = new ScoreRepository();
-           _gameRepository = new GameRepository();
-           _puzzleCommand = new PuzzleCommand(_gameRepository, _scoreRepository); 
-        } 
-        
-        [UnityTest]
-        public IEnumerator Test_StartPuzzle()
-        {
-            _puzzleCommand.Start(PuzzleType.BootProgram, 1.0);
-            Assert.AreEqual(PuzzleType.BootProgram, _gameRepository.CurrentPuzzle.type);
+            GameRepository gameRepository = new GameRepository();
+            
+            _puzzleCommand = new PuzzleCommand(puzzleRepository, gameRepository);
             
             yield return null;
         }
         
-        [UnityTest]
-        public IEnumerator Test_EndPuzzle()
+        [UnityTest] public IEnumerator Test_Start()
         {
-            _puzzleCommand.Start(PuzzleType.BootProgram, 1.0);
-            _puzzleCommand.End(PuzzleType.BootProgram, 2.0);
-            Assert.AreEqual(1.0, _scoreRepository.Get(PuzzleType.BootProgram));
+            _puzzleCommand.Start(PuzzleType.BootProgram, 0);
+            double deltaTime = _puzzleCommand.DeltaTime(1);
+            Assert.AreEqual(1, deltaTime);
             
             yield return null;
         }
         
-        [UnityTest]
-        public IEnumerator Test_ResetLevel()
+        [UnityTest] public IEnumerator Test_StartTwice()
         {
-            _puzzleCommand.Start(PuzzleType.BootProgram, 1.0);
-            _puzzleCommand.End(PuzzleType.BootProgram, 2.0);
-            _puzzleCommand.ResetAll();
-            Assert.AreEqual(0, _scoreRepository.Get(PuzzleType.BootProgram));
+            _puzzleCommand.Start(PuzzleType.BootProgram, 0);
+            _puzzleCommand.Start(PuzzleType.BootProgram, 1);
+            double deltaTime = _puzzleCommand.DeltaTime(1);
+            Assert.AreEqual(1, deltaTime);
             
             yield return null;
         }

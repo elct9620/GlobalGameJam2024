@@ -1,63 +1,39 @@
-using System;
 using Entity;
+using Reflex.Attributes;
 using Repository;
 
 namespace Command
 {
-    public class PuzzleStartError : Exception
+    public class PuzzleCommand
     {
-        
-    }
-    
-    public class PuzzleCommand {
-        private readonly ScoreRepository _scoreRepository;
-        private readonly PuzzleRepository _puzzle;
+        private readonly PuzzleRepository _puzzleRepository;
         private readonly GameRepository _gameRepository;
-
-        public PuzzleCommand(GameRepository gameRepository, ScoreRepository scoreRepository)
+        
+        public PuzzleCommand(PuzzleRepository puzzleRepository, GameRepository gameRepository)
         {
+            _puzzleRepository = puzzleRepository;
             _gameRepository = gameRepository;
-            _scoreRepository = scoreRepository;
-        }
-
-        public Entity.Puzzle Current()
-        {
-            return _gameRepository.CurrentPuzzle;
         }
         
-        public void ResetAll()
-        {
-            _scoreRepository.Reset();
-        }
-
         public void Start(PuzzleType type, double time)
         {
-            if (_gameRepository.CurrentPuzzle != null)
-            {
-                throw new PuzzleStartError();
-            }
+           if(_gameRepository.CurrentPuzzle != null)
+           {
+               return;
+           } 
             
-            
-            Entity.Puzzle puzzle = _puzzle.Find(type);
-            _gameRepository.SetPuzzle(puzzle);
+           Puzzle puzzle = _puzzleRepository.Find(type);
+           _gameRepository.SetPuzzle(puzzle, time);
         }
 
-        public void End(PuzzleType type, double time)
+        public double DeltaTime(double current)
         {
-            Entity.Puzzle puzzle = _gameRepository.CurrentPuzzle;
-            if (puzzle == null)
-            {
-                return;
-            }
-            
-            if (puzzle.type != type)
-            {
-                return;
-            }
-            
-            double delta = time - _gameRepository.CurrentPuzzleStartTime;
-            _scoreRepository.Add(puzzle.type, delta);
-            _gameRepository.SetPuzzle(null);
+           if (_gameRepository.CurrentPuzzle == null)
+           {
+               return 0;
+           } 
+           
+           return current - _gameRepository.CurrentPuzzleStartTime;
         }
-    }   
+    }
 }
