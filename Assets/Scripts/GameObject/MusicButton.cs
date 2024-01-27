@@ -10,31 +10,36 @@ public class MusicButton:MonoBehaviour
     [Inject] private readonly UnlockCommand _unlockCommand;
 
     public Animator Animator;
+    public AudioSource audioSource;
     public GameObject turnOn;
     public GameObject turnOff;
     public void Start()
     {
         var button = turnOn.GetComponent<Button>();
-        button.onClick.AddListener(TurnOff);
+        button.onClick.AddListener(Switch);
         
         var button2 = turnOff.GetComponent<Button>();
-        button2.onClick.AddListener(TurnOn);
+        button2.onClick.AddListener(Switch);
+        
+        audioSource.Play();
     }
 
-    private void TurnOff()
+    private void Switch()
     {
          
         _unlockCommand.Unlock(LockType.MusicPlaying, Time.time);
-        Animator.enabled = false;
-        turnOff.SetActive(true);
-        turnOn.SetActive(false);
+        if (!turnOff.activeSelf)
+        {
+            audioSource.Stop();
+        }
+        else
+        {
+            audioSource.Play();
+        }
+
+        Animator.enabled = !turnOff.activeSelf;
+        turnOff.SetActive(!turnOff.activeSelf);
+        turnOn.SetActive(!turnOn.activeSelf);
     }
-    private void TurnOn()
-    {
-         
-      
-        Animator.enabled = true;
-        turnOff.SetActive(false);
-        turnOn.SetActive(true);
-    }
+
 }
