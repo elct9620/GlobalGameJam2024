@@ -21,8 +21,8 @@ namespace Tests.Command
             
             GameRepository gameRepository = new GameRepository();
             ScoreRepository scoreRepository = new ScoreRepository();
-            GameEvent<UnlockEvent> unlockEvent = ScriptableObject.CreateInstance<GameEvent<UnlockEvent>>();
-            GameEvent<ResolveEvent> resolveEvent = ScriptableObject.CreateInstance<GameEvent<ResolveEvent>>();
+            GameEvent<UnlockEvent> unlockEvent = new GameEvent<UnlockEvent>();
+            GameEvent<ResolveEvent> resolveEvent = new GameEvent<ResolveEvent>();
             
             gameRepository.SetPuzzle(puzzle, 0.0);
             _unlockCommand = new UnlockCommand(gameRepository, scoreRepository, unlockEvent, resolveEvent);
