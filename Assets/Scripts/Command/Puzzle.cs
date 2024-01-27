@@ -36,15 +36,21 @@ namespace Command
             _game.SetPuzzle(puzzle);
         }
 
-        public void End(double time)
+        public void End(string name, double time)
         {
             Entity.Puzzle puzzle = _game.CurrentPuzzle;
-            if (puzzle != null)
+            if (puzzle == null)
             {
-                puzzle.End(time);
-                _score.Add(puzzle.Name, puzzle.Delta());
+                return;
             }
             
+            if (puzzle.Name != name)
+            {
+                return;
+            }
+            
+            puzzle.End(time);
+            _score.Add(puzzle.Name, puzzle.Delta());
             _game.SetPuzzle(null);
         }
     }   
