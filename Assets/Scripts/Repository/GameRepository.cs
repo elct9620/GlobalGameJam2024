@@ -10,7 +10,7 @@ namespace Repository
         public double CurrentPuzzleStartTime { get; private set;  } = 0;
 
 
-        public void SetPuzzle(Entity.Puzzle puzzle, double time)
+        public void SetPuzzle(Puzzle puzzle, double time)
         {
             CurrentPuzzle = puzzle;
             if (CurrentPuzzle == null)

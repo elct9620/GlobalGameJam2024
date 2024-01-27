@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3022e591934548e6b52370fc1d9fdc67, type: 3}
   m_Name: PuzzleData
   m_EditorClassIdentifier: 
-  Puzzles: []
+  Puzzles:
+  - type: 1
+    locks: 00000000

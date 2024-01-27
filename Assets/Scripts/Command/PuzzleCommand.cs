@@ -38,11 +38,6 @@ namespace Command
 
         public double DeltaTime(double current)
         {
-           if (_gameRepository.CurrentPuzzle == null)
-           {
-               return 0;
-           }
-
            return _gameRepository.DeltaTime(current);
         }
     }
