@@ -10,6 +10,12 @@ namespace Scenes.DragoObjectSample.Scripts
             var boxCollider2D = GetComponent<BoxCollider2D>();
 
             if (boxCollider2D is null) throw new NullReferenceException("找不到2D碰撞");
+            
+            var component = GetComponent<Rigidbody2D>();
+
+            if (component is null) throw new NullReferenceException("找不到2D剛體");
         }
     }
+
+  
 }

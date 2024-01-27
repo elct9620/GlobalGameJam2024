@@ -17,8 +17,6 @@ namespace Scenes.DragoObjectSample.Scripts
             if (Input.GetMouseButtonDown(0))
             {
                 var targetObject = Physics2D.OverlapPoint(mousePosition);
-
-               
                 
                 if (targetObject)
                 {
