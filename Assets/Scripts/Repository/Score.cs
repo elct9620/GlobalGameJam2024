@@ -1,21 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Repository
 {
     public class Score
     {
-        private Dictionary<string, double> scores = new();
+        private readonly Dictionary<string, double> _scores = new();
         
         public double Get(string name)
         {
-            return scores[name];
+            return _scores[name];
         }
 
         public void Add(string name, double score)
         {
-            scores.Add(name, score);
+            _scores.Add(name, score);
         }
     }
 }
