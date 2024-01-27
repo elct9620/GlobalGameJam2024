@@ -15,3 +15,5 @@ MonoBehaviour:
   Puzzles:
   - type: 1
     locks: 00000000
+  - type: 2
+    locks: 01000000

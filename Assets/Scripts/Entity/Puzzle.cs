@@ -21,6 +21,11 @@ namespace Entity
 
         public bool Unlock(LockType type)
         {
+            if(_unlocked == null)
+            {
+                _unlocked = new Dictionary<LockType, bool>();
+            }
+            
             if (locks.Contains(type))
             {
                 _unlocked[type] = true;
@@ -32,6 +37,11 @@ namespace Entity
 
         public bool Resolved()
         {
+            if (_unlocked == null)
+            {
+                _unlocked = new Dictionary<LockType, bool>();
+            }
+            
             foreach (LockType lockType in locks)
             {
                 if (!_unlocked.ContainsKey(lockType))

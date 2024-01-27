@@ -4,5 +4,6 @@ namespace Entity
     {
        None,
        BootProgram,
+       LoadingScreen,
     }
 }
