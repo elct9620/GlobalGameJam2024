@@ -35,7 +35,7 @@ namespace Tests.Command
         {
             Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
             _puzzle.Start(puzzle.Name, puzzle.StartAt);
-            _puzzle.End(2.0);
+            _puzzle.End("Test", 2.0);
             Assert.AreEqual(1.0, _score.Get(puzzle.Name));
         }
         
@@ -45,7 +45,7 @@ namespace Tests.Command
             
             Entity.Puzzle puzzle = new Entity.Puzzle("Test", 1.0);
             _puzzle.Start(puzzle.Name, puzzle.StartAt);
-            _puzzle.End(2.0);
+            _puzzle.End("Test", 2.0);
             _puzzle.ResetAll();
             Assert.AreEqual(0, _score.Get("Test"));
         }
