@@ -1,8 +1,6 @@
 using System;
 using Entity;
-using Reflex.Attributes;
 using Repository;
-using UnityEngine.SceneManagement;
 using Score = Repository.Score;
 
 namespace Command
@@ -14,6 +12,7 @@ namespace Command
     
     public class Puzzle {
         private readonly Score _score;
+        private readonly Repository.Puzzle _puzzle;
         private readonly Game _game;
 
         public Puzzle(Game game, Score score)
@@ -24,7 +23,7 @@ namespace Command
 
         public Entity.Puzzle Current()
         {
-            return _game.CurrentPuzzle; 
+            return _game.CurrentPuzzle;
         }
         
         public void ResetAll()
@@ -39,7 +38,8 @@ namespace Command
                 throw new PuzzleStartError();
             }
             
-            Entity.Puzzle puzzle = new Entity.Puzzle(type, time);
+            
+            Entity.Puzzle puzzle = _puzzle.Find(type);
             _game.SetPuzzle(puzzle);
         }
 
@@ -56,8 +56,8 @@ namespace Command
                 return;
             }
             
-            puzzle.End(time);
-            _score.Add(puzzle.type, puzzle.Delta());
+            double delta = time - _game.CurrentPuzzleStartTime;
+            _score.Add(puzzle.type, delta);
             _game.SetPuzzle(null);
         }
     }   
