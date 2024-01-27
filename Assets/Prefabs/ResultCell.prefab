@@ -756,6 +756,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8136773672134157913}
+  - component: {fileID: 1481282330489516499}
   m_Layer: 5
   m_Name: ResultCell
   m_TagString: Untagged
@@ -785,3 +786,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 808.1312, y: 94.511}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1481282330489516499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9188639664593960435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52bb7c4530005462a98f7aa11b5f3bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleName: {fileID: 2977777439094050617}
+  score: {fileID: 8960905742889539385}
