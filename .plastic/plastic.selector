@@ -1,4 +1,0 @@
-repository "GlobalGameJam202402@ooncakemay@cloud"
-  path "/"
-    br "/main"
-    co "/main"
