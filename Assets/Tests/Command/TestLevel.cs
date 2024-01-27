@@ -1,6 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using Command;
 using NUnit.Framework;
 using Repository;
+using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
 
 namespace Tests.Command
 {
@@ -15,12 +19,20 @@ namespace Tests.Command
            _level = new Level(_score); 
         } 
         
-        [Test]
-        public void Test_StartLevel()
+        [UnityTest]
+        public IEnumerator Test_StartLevel()
         {
-            _level.Start("Test", 1.0);
+            Scene current = new Scene
+            {
+                name = "Test"
+            };
+            SceneManager.SetActiveScene(current);
+            
+            _level.Start( 1.0);
             _level.End(2.0);
             Assert.AreEqual(1.0, _score.Get("Test"));
+            
+            yield return null;
         }
     }
 }

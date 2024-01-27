@@ -1,4 +1,5 @@
 using Reflex.Attributes;
+using UnityEngine.SceneManagement;
 using Score = Repository.Score;
 
 namespace Command
@@ -13,15 +14,15 @@ namespace Command
             _score = score;
         }
 
-        public void Start(string name, double time)
+        public void Start(double time)
         {
-            _name = name;
             _startAt = time;
         }
 
         public void End(double time)
         {
-            _score.Add(_name, time - _startAt);
+            Scene current = SceneManager.GetActiveScene();
+            _score.Add(current.name, time - _startAt);
         }
     }   
 }
