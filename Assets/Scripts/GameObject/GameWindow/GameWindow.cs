@@ -7,28 +7,29 @@ using Event;
 using Reflex.Attributes;
 using UnityEngine;
 
-public class GameWindow : MonoBehaviour, IGameEventHandler<UnlockEvent>
+public class GameWindow : MonoBehaviour, IGameEventHandler<ResolveEvent>
 {
     public GameObject loadingScreen;
     public GameObject resultScreen;
     
-    [Inject] private readonly GameEvent<UnlockEvent> _unlockEvent; 
+    [Inject] private readonly GameEvent<ResolveEvent> _resolveEvent;
     [Inject] private readonly PuzzleCommand _puzzleCommand;
 
     void Start()
     {
-        _unlockEvent.AddListener(this);
+        _resolveEvent.AddListener(this);
         _puzzleCommand.Start(PuzzleType.LoadingScreen, Time.time);
     }
     
     void OnDestroy()
     {
-        _unlockEvent.RemoveListener(this);
+        _resolveEvent.RemoveListener(this);
     }
 
-    public void OnGameEvent(UnlockEvent payload)
+
+    public void OnGameEvent(ResolveEvent payload)
     {
-        if(payload.type == LockType.LoadingProgress)
+        if (payload.type == PuzzleType.LoadingScreen)
         {
             loadingScreen.SetActive(false);
             resultScreen.SetActive(true);
