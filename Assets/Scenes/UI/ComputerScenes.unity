@@ -982,6 +982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+  approachRadius: 0.2
 --- !u!1 &1570567656
 GameObject:
   m_ObjectHideFlags: 0
