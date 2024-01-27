@@ -72,3 +72,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockEvent: {fileID: 11400000, guid: 1e350d097e6724481832caf9e1287227, type: 2}
+  resolveEvent: {fileID: 11400000, guid: d71d862651db14216baa01396c7adca7, type: 2}
