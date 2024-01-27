@@ -12,7 +12,7 @@ namespace Entity
         {
             for (int i = listeners.Count - 1; i >= 0; i--)
             {
-                listeners[i].On(payload);
+                listeners[i].OnGameEvent(payload);
             }
         }
         

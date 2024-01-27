@@ -2,6 +2,6 @@ namespace Entity
 {
     public interface IGameEventHandler<T>
     {
-        public void On(T payload);
+        public void OnGameEvent<T>(T payload);
     }
 }
