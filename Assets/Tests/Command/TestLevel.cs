@@ -34,5 +34,22 @@ namespace Tests.Command
             
             yield return null;
         }
+        
+        [UnityTest]
+        public IEnumerator Test_ResetLevel()
+        {
+            Scene current = new Scene
+            {
+                name = "Test"
+            };
+            SceneManager.SetActiveScene(current);
+            
+            _level.Start( 1.0);
+            _level.End(2.0);
+            _level.ResetAll();
+            Assert.AreEqual(0, _score.Get("Test"));
+            
+            yield return null;
+        }
     }
 }

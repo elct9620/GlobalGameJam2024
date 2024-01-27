@@ -13,6 +13,11 @@ namespace Command
         {
             _score = score;
         }
+        
+        public void ResetAll()
+        {
+            _score.Reset();
+        }
 
         public void Start(double time)
         {
