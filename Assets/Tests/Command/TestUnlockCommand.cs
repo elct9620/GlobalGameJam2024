@@ -1,6 +1,7 @@
 using System.Collections;
 using Command;
 using Entity;
+using Event;
 using NUnit.Framework;
 using Repository;
 using UnityEngine;
@@ -20,9 +21,11 @@ namespace Tests.Command
             
             GameRepository gameRepository = new GameRepository();
             ScoreRepository scoreRepository = new ScoreRepository();
+            GameEvent<UnlockEvent> unlockEvent = ScriptableObject.CreateInstance<GameEvent<UnlockEvent>>();
+            GameEvent<ResolveEvent> resolveEvent = ScriptableObject.CreateInstance<GameEvent<ResolveEvent>>();
             
             gameRepository.SetPuzzle(puzzle, 0.0);
-            _unlockCommand = new UnlockCommand(gameRepository, scoreRepository);
+            _unlockCommand = new UnlockCommand(gameRepository, scoreRepository, unlockEvent, resolveEvent);
             
             yield return null;
         }

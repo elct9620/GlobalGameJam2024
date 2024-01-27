@@ -1,4 +1,5 @@
 using Entity;
+using Event;
 using Repository;
 
 namespace Command
@@ -7,11 +8,20 @@ namespace Command
     {
         private readonly GameRepository _gameRepository;
         private readonly ScoreRepository _scoreRepository;
-        
-        public UnlockCommand(GameRepository gameRepository, ScoreRepository scoreRepository)
+        private readonly GameEvent<UnlockEvent> _unlockEvent;
+        private readonly GameEvent<ResolveEvent> _resolveEvent;
+
+        public UnlockCommand(
+            GameRepository gameRepository,
+            ScoreRepository scoreRepository,
+            GameEvent<UnlockEvent> unlockEvent,
+            GameEvent<ResolveEvent> resolveEvent
+        )
         {
             _gameRepository = gameRepository;
             _scoreRepository = scoreRepository;
+            _unlockEvent = unlockEvent;
+            _resolveEvent = resolveEvent;
         }
 
         public bool Unlock(LockType type, double time)
@@ -21,19 +31,23 @@ namespace Command
             {
                 return false;
             }
-            
-            currentPuzzle.Unlock(type);
+
+            bool isUnlocked = currentPuzzle.Unlock(type);
+            if (isUnlocked)
+            {
+                _unlockEvent.Emit(new UnlockEvent(type));
+            }
 
             if (currentPuzzle.Resolved())
             {
-                double deltaTime = _gameRepository.DeltaTime(time);        
+                double deltaTime = _gameRepository.DeltaTime(time);
                 _scoreRepository.Add(currentPuzzle.type, deltaTime);
                 _gameRepository.Reset();
+                _resolveEvent.Emit(new ResolveEvent(currentPuzzle.type));
                 return true;
             }
 
             return false;
         }
-
     }
 }
