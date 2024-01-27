@@ -3,7 +3,7 @@ using Entity;
 
 namespace Repository
 {
-    public class Score
+    public class ScoreRepository
     {
         private readonly Dictionary<PuzzleType, double> _scores = new();
         

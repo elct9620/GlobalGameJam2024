@@ -1,7 +1,6 @@
 using System;
 using Entity;
 using Repository;
-using Score = Repository.Score;
 
 namespace Command
 {
@@ -11,14 +10,14 @@ namespace Command
     }
     
     public class PuzzleCommand {
-        private readonly Score _score;
+        private readonly ScoreRepository _scoreRepository;
         private readonly Repository.Puzzle _puzzle;
         private readonly GameRepository _gameRepository;
 
-        public PuzzleCommand(GameRepository gameRepository, Score score)
+        public PuzzleCommand(GameRepository gameRepository, ScoreRepository scoreRepository)
         {
             _gameRepository = gameRepository;
-            _score = score;
+            _scoreRepository = scoreRepository;
         }
 
         public Entity.Puzzle Current()
@@ -28,7 +27,7 @@ namespace Command
         
         public void ResetAll()
         {
-            _score.Reset();
+            _scoreRepository.Reset();
         }
 
         public void Start(PuzzleType type, double time)
@@ -57,7 +56,7 @@ namespace Command
             }
             
             double delta = time - _gameRepository.CurrentPuzzleStartTime;
-            _score.Add(puzzle.type, delta);
+            _scoreRepository.Add(puzzle.type, delta);
             _gameRepository.SetPuzzle(null);
         }
     }   

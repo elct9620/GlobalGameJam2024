@@ -14,7 +14,7 @@ namespace Tests.Command
     public class TestPuzzleCommand
     {
         private PuzzleCommand _puzzleCommand;
-        private Score _score;
+        private ScoreRepository _scoreRepository;
         private GameRepository _gameRepository;
         
         [UnitySetUp] public void Setup()
@@ -25,9 +25,9 @@ namespace Tests.Command
                new Entity.Puzzle(PuzzleType.BootProgram, new LockType[] { }) 
             };
             
-           _score = new Score();
+           _scoreRepository = new ScoreRepository();
            _gameRepository = new GameRepository();
-           _puzzleCommand = new PuzzleCommand(_gameRepository, _score); 
+           _puzzleCommand = new PuzzleCommand(_gameRepository, _scoreRepository); 
         } 
         
         [UnityTest]
@@ -44,7 +44,7 @@ namespace Tests.Command
         {
             _puzzleCommand.Start(PuzzleType.BootProgram, 1.0);
             _puzzleCommand.End(PuzzleType.BootProgram, 2.0);
-            Assert.AreEqual(1.0, _score.Get(PuzzleType.BootProgram));
+            Assert.AreEqual(1.0, _scoreRepository.Get(PuzzleType.BootProgram));
             
             yield return null;
         }
@@ -55,7 +55,7 @@ namespace Tests.Command
             _puzzleCommand.Start(PuzzleType.BootProgram, 1.0);
             _puzzleCommand.End(PuzzleType.BootProgram, 2.0);
             _puzzleCommand.ResetAll();
-            Assert.AreEqual(0, _score.Get(PuzzleType.BootProgram));
+            Assert.AreEqual(0, _scoreRepository.Get(PuzzleType.BootProgram));
             
             yield return null;
         }
