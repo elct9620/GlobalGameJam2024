@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class LoadingSlider : MonoBehaviour
+public class GameWindowLoading : MonoBehaviour
 {
     [Inject] private readonly UnlockCommand _unlockCommand;
     
