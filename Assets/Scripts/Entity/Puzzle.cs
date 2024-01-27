@@ -40,5 +40,10 @@ namespace Entity
 
            return true;
        }
+
+       public void Reset()
+       {
+              _unlocked = new Dictionary<LockType, bool>();
+       }
     }
 }

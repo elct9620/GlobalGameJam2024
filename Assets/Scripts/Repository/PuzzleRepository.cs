@@ -20,5 +20,13 @@ namespace Repository
 
             return null;
         }
+
+        public void Reset()
+        {
+            foreach (var puzzle in Puzzles)
+            {
+                puzzle.Reset();
+            }
+        }
     }
 }
