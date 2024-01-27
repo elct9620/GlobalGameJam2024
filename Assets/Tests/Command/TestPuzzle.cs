@@ -28,7 +28,7 @@ namespace Tests.Command
             
             Entity.Puzzle puzzle = new Entity.Puzzle(PuzzleType.BootProgram, 1.0);
             _puzzle.Start(PuzzleType.BootProgram, puzzle.StartAt);
-            Assert.AreEqual(puzzle.Type, _game.CurrentPuzzle.Type);
+            Assert.AreEqual(puzzle.type, _game.CurrentPuzzle.type);
         }
         
         [Test]

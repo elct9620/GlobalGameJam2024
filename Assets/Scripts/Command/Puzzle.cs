@@ -11,6 +11,7 @@ namespace Command
     {
         
     }
+    
     public class Puzzle {
         private readonly Score _score;
         private readonly Game _game;
@@ -50,13 +51,13 @@ namespace Command
                 return;
             }
             
-            if (puzzle.Type != type)
+            if (puzzle.type != type)
             {
                 return;
             }
             
             puzzle.End(time);
-            _score.Add(puzzle.Type, puzzle.Delta());
+            _score.Add(puzzle.type, puzzle.Delta());
             _game.SetPuzzle(null);
         }
     }   

@@ -1,14 +1,19 @@
+using System;
+using UnityEngine.Serialization;
+
 namespace Entity
 {
+    [Serializable]
     public class Puzzle
     {
-        public PuzzleType Type { get; private set; }
+        [FormerlySerializedAs("Type")] public PuzzleType type;
+        [FormerlySerializedAs("Locks")] public LockType[] locks;
         public double StartAt { get; private set; }
         public double EndAt { get; private set; }
         
         public Puzzle(PuzzleType type, double time)
         {
-            Type = type;
+            this.type = type;
             StartAt = time;
         }
         
