@@ -4,6 +4,8 @@ on: [push, pull_request]
 
 env:
   UNITY_VERSION: '2022.3.18f1'
+  ITCH_USERNAME: aotoki
+  ITCH_GAME_ID: globalgamejam2024
 
 jobs:
   build:
@@ -46,9 +48,13 @@ jobs:
           unityVersion: ${{ env.UNITY_VERSION }}
           allowDirtyBuild: true
           targetPlatform: WebGL
-          customParameters: -WebGLCompressionFormat Gzip
 
       # Output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build
+          path: build
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: build/WebGL/WebGL
@@ -67,3 +73,15 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: Build
+          path: build
+      - uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{secrets.BUTLER_API_KEY}}
+          gameData: ./build/WebGL/WebGL
+          itchUsername: ${{env.ITCH_USERNAME}}
+          itchGameId: ${{ env.ITCH_GAME_ID }}
+          buildChannel: webgl
+          buildNumber: ${{ needs.version.outputs.version_hash }}
