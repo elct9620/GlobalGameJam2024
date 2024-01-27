@@ -31,5 +31,17 @@ namespace Repository
             
             _scores.Add(type, score);
         }
+
+        public Dictionary<PuzzleType, double> List()
+        {
+            var scores = new Dictionary<PuzzleType, double>();
+            
+            foreach (var score in _scores)
+            {
+                scores.Add(score.Key, score.Value);
+            }
+
+            return scores;
+        }
     }
 }
