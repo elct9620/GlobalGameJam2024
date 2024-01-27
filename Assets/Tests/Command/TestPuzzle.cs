@@ -8,15 +8,15 @@ using UnityEngine.TestTools;
 
 namespace Tests.Command
 {
-    public class TestLevel
+    public class TestPuzzle
     {
-        private Level _level;
+        private Puzzle _puzzle;
         private Score _score;
         
         [SetUp] public void Setup()
         {
            _score = new Score();
-           _level = new Level(_score); 
+           _puzzle = new Puzzle(_score); 
         } 
         
         [UnityTest]
@@ -28,8 +28,8 @@ namespace Tests.Command
             };
             SceneManager.SetActiveScene(current);
             
-            _level.Start( 1.0);
-            _level.End(2.0);
+            _puzzle.Start( 1.0);
+            _puzzle.End(2.0);
             Assert.AreEqual(1.0, _score.Get("Test"));
             
             yield return null;
@@ -44,9 +44,9 @@ namespace Tests.Command
             };
             SceneManager.SetActiveScene(current);
             
-            _level.Start( 1.0);
-            _level.End(2.0);
-            _level.ResetAll();
+            _puzzle.Start( 1.0);
+            _puzzle.End(2.0);
+            _puzzle.ResetAll();
             Assert.AreEqual(0, _score.Get("Test"));
             
             yield return null;

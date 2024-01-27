@@ -4,12 +4,12 @@ using Score = Repository.Score;
 
 namespace Command
 {
-    public class Level {
+    public class Puzzle {
         private readonly Score _score;
         private string _name;
         private double _startAt;
 
-        public Level(Score score)
+        public Puzzle(Score score)
         {
             _score = score;
         }
