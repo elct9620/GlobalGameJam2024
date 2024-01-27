@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5790651541645827864}
   - component: {fileID: 2053265905397494828}
   - component: {fileID: 7817328058460233275}
+  - component: {fileID: 4812726711664719696}
   m_Layer: 5
   m_Name: Gamewindow
   m_TagString: Untagged
@@ -92,6 +93,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &4812726711664719696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2314670024812301354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738e7ba974f8d4654acf2737c4d20476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2380412772209351563
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +828,10 @@ PrefabInstance:
       value: GameScenes_Loading
       objectReference: {fileID: 0}
     - target: {fileID: 1993670604810559354, guid: 409686f8898c99b48bbec34e80d2dd0a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783638932363720823, guid: 409686f8898c99b48bbec34e80d2dd0a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
