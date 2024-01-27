@@ -11,8 +11,5 @@ namespace Event
         {
             this.type = type;
         }
-        
-        [CreateAssetMenu(fileName = "UnlockEvent", menuName = "Events/UnlockEvent", order = 1)]
-        public class UnlockEventAsset : GameEvent<UnlockEvent> {}
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Entity
 {
-    public class GameEvent<T> : ScriptableObject
+    public class GameEvent<T>
     {
         private List<IGameEventHandler<T>> listeners = new List<IGameEventHandler<T>>();
         
