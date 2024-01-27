@@ -2,6 +2,7 @@ namespace Entity
 {
     public enum LockType
     {
-        MusicPlaying
+        MusicPlaying,
+        LoadingProgress,
     }
 }
