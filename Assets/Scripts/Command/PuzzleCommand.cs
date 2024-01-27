@@ -25,6 +25,16 @@ namespace Command
            Puzzle puzzle = _puzzleRepository.Find(type);
            _gameRepository.SetPuzzle(puzzle, time);
         }
+        
+        public PuzzleType CurrentPuzzle()
+        {
+           if (_gameRepository.CurrentPuzzle == null)
+           {
+               return PuzzleType.None;
+           }
+
+           return _gameRepository.CurrentPuzzle.type;
+        }
 
         public double DeltaTime(double current)
         {

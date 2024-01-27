@@ -45,5 +45,39 @@ namespace Tests.Command
             
             yield return null;
         }
+        
+        [UnityTest] public IEnumerator Test_CurrentPuzzle()
+        {
+            _puzzleCommand.Start(PuzzleType.BootProgram, 0);
+            PuzzleType type = _puzzleCommand.CurrentPuzzle();
+            Assert.AreEqual(PuzzleType.BootProgram, type);
+            
+            yield return null;
+        }
+        
+        [UnityTest] public IEnumerator Test_CurrentPuzzleWhenNone()
+        {
+            PuzzleType type = _puzzleCommand.CurrentPuzzle();
+            Assert.AreEqual(PuzzleType.None, type);
+            
+            yield return null;
+        }
+        
+        [UnityTest] public IEnumerator Test_DeltaTimeWhenNone()
+        {
+            double deltaTime = _puzzleCommand.DeltaTime(1);
+            Assert.AreEqual(0, deltaTime);
+            
+            yield return null;
+        }
+        
+        [UnityTest] public IEnumerator Test_DeltaTimeWhenStarted()
+        {
+            _puzzleCommand.Start(PuzzleType.BootProgram, 0);
+            double deltaTime = _puzzleCommand.DeltaTime(1);
+            Assert.AreEqual(1, deltaTime);
+            
+            yield return null;
+        }
     }
 }
