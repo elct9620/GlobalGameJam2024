@@ -57,4 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d31b93d590b1484baab38bfb0851c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleConstraint: {fileID: 11400000, guid: b0893d40212ff4270b6d08fc40339134, type: 2}
+  puzzleRepository: {fileID: 11400000, guid: 16dd12f7b46e747bfa8c774fd66dd4ce, type: 2}
