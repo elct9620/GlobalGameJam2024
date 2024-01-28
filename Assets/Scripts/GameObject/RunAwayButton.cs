@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Command;
 using Entity;
 using Event;
 using Reflex.Attributes;
@@ -11,6 +12,7 @@ using Random = UnityEngine.Random;
 
 public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
 {
+    [Inject] private readonly PuzzleCommand _puzzleCommand;
     [Inject] private readonly GameEvent<ResolveEvent> _resolveEvent;
 
     public float maxMoveSpeed = 600.0f;
@@ -67,6 +69,8 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
                 lastEscapeTime = Time.time;
                 TeleportToSafePosition(); // 瞬間移動到安全位置
             }
+            
+            _puzzleCommand.Start(PuzzleType.BootProgram, Time.time);
         }
         else if (distanceToMouse <= thresholdDistance)
         {
