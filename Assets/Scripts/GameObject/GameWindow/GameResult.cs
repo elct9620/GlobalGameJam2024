@@ -37,13 +37,11 @@ public class GameResult : MonoBehaviour
     
     public IEnumerator BuildResultItems(Dictionary<PuzzleType, double> scores, double maxScore, float waitTime)
     {
-        yield return new WaitForSeconds((float) waitTime);
         foreach (var score in scores)
         {
             ResultItem resultItem = Instantiate(resultPrefab, resultPanel.transform);
             resultItem.SetResultItem(score.Key, score.Value, maxScore);
+            yield return new WaitForSeconds(waitTime);
         }
-
-        yield return new WaitForSeconds(waitTime);
     }
 }
