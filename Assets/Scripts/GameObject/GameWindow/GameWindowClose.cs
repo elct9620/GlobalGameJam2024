@@ -7,11 +7,8 @@ public class GameWindowClose : MonoBehaviour
     public GameObject targetApplication;
 
     // Update is called once per frame
-    void Update()
+    public void Close()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-           targetApplication.SetActive(false); 
-        }        
+        targetApplication.SetActive(false); 
     }
 }
