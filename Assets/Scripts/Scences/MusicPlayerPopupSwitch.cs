@@ -8,10 +8,12 @@ namespace Scenes
         
         public GameObject pop;
         public Button click;
+        public Button click2;
 
         public void Start()
         {
             click.onClick.AddListener(Switch);
+            click2.onClick.AddListener(Switch);
         }
 
         private void Switch()
