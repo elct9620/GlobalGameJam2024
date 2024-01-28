@@ -37,7 +37,7 @@ public class MusicButton:MonoBehaviour
             audioSource.Play();
         }
 
-        Animator.enabled = !turnOff.activeSelf;
+        Animator.enabled = !turnOn.activeSelf;
         turnOff.SetActive(!turnOff.activeSelf);
         turnOn.SetActive(!turnOn.activeSelf);
     }
