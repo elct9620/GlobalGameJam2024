@@ -7,6 +7,11 @@ public class CharacterMovement : MonoBehaviour
     public Vector3 targetPosition;
     public Animator Animator;
 
+    public GameObject closeObject;          // 新增的 GameObject
+    public float      closeDistance = 100f; // 靠近的距離
+
+    private bool isMoving = true; // 新增的變量，用於控制角色是否移動
+
     private void Start()
     {
         targetPosition = transform.position;
@@ -23,7 +28,18 @@ public class CharacterMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            targetPosition = Input.mousePosition;
+            Vector3 mousePosition = Input.mousePosition;
+            float   distance      = Vector3.Distance(closeObject.transform.position, mousePosition);
+            Debug.Log("pos"+distance);
+            if (distance < closeDistance)
+            {
+                isMoving = false; // 如果鼠標位置靠近 closeObject，則停止移動
+            }
+            else
+            {
+                targetPosition = mousePosition;
+                isMoving       = true; // 如果鼠標位置不靠近 closeObject，則繼續移動
+            }
         }
     }
 
