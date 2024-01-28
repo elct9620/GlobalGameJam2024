@@ -1,11 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Entity;
+using Event;
+using Reflex.Attributes;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
-public class RunAwayButton : MonoBehaviour
+public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
 {
+    [Inject] private readonly GameEvent<ResolveEvent> _resolveEvent;
 
     public float maxMoveSpeed = 600.0f;
     public int cornerEscapeCount = 0;
@@ -14,6 +20,7 @@ public class RunAwayButton : MonoBehaviour
     public float resetSizeAfterSeconds = 5.0f;
     public float cornerCountCooldown = 1.0f;
     public float escapeCooldown = 1.0f;
+    public bool isMoving = true;
 
     private RectTransform rectTransform;
     private Vector2 originalSize;
@@ -21,16 +28,29 @@ public class RunAwayButton : MonoBehaviour
     private float cornerEscapeDistance = 100.0f;
     private float lastCornerCountTime = 0.0f;
     private float lastEscapeTime = -10.0f;
+    private IGameEventHandler<ResolveEvent> _gameEventHandlerImplementation;
 
     private void Start()
     {
+        _resolveEvent.AddListener(this);
+        
         rectTransform = GetComponent<RectTransform>();
         originalSize = rectTransform.sizeDelta;
         thresholdDistance = Mathf.Max(originalSize.x, originalSize.y) * 2;
     }
 
+    public void OnDestroy()
+    {
+        _resolveEvent.RemoveListener(this);
+    }
+
     private void Update()
     {
+        if (!isMoving)
+        {
+            return;
+        }
+
         Vector2 mousePosition = Input.mousePosition;
         float distanceToMouse = Vector2.Distance(rectTransform.position, mousePosition);
 
@@ -135,4 +155,11 @@ public class RunAwayButton : MonoBehaviour
         return position;
     }
 
+    public void OnGameEvent(ResolveEvent payload)
+    {
+        if (payload.type == PuzzleType.BootProgram)
+        {
+            isMoving = false;
+        }
+    }
 }
