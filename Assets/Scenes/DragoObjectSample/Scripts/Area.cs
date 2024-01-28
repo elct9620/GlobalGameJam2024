@@ -1,11 +1,16 @@
 using System;
+using Command;
+using Entity;
+using Reflex.Attributes;
 using UnityEngine;
 
 namespace Scenes.DragoObjectSample.Scripts
 {
     public class Area : MonoBehaviour
     {
+        [Inject] private readonly UnlockCommand _unlockCommand;
         public string KeyObjectName;
+        
         public void Start()
         {
             var boxCollider2D = GetComponent<BoxCollider2D>();
@@ -19,7 +24,8 @@ namespace Scenes.DragoObjectSample.Scripts
         {
             if (collision.gameObject.name == KeyObjectName)
             {
-                Debug.Log("做甚麼動作，撞到關鍵物件" + collision.gameObject.name);
+                _unlockCommand.Unlock(LockType.BossToTrash, Time.time);
+                Debug.Log("撞到關鍵物品");
             }
             else
             {
