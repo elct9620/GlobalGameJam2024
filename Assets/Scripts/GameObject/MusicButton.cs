@@ -20,8 +20,6 @@ public class MusicButton:MonoBehaviour
         
         var button2 = turnOff.GetComponent<Button>();
         button2.onClick.AddListener(Switch);
-        
-        audioSource.Play();
     }
 
     private void Switch()
