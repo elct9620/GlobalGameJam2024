@@ -5,5 +5,6 @@ namespace Entity
        None,
        BootProgram,
        LoadingScreen,
+       GameScreen,
     }
 }
