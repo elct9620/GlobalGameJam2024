@@ -4,5 +4,6 @@ namespace Entity
     {
         MusicPlaying,
         LoadingProgress,
+        BossToTrash
     }
 }
