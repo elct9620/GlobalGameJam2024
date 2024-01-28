@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    const string WalkParameter = "Walk";
     public float speed = 150.0f;
     public Vector3 targetPosition;
+    public Animator Animator;
 
     private void Start()
     {
@@ -14,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     {
         CaptureMovement();
         Move();
+        Animate();
     }
 
     private void CaptureMovement()
@@ -31,5 +34,17 @@ public class CharacterMovement : MonoBehaviour
             targetPosition,
             speed * Time.deltaTime
         );
+    }
+
+    void Animate()
+    {
+        Vector3 direction = targetPosition - transform.position;
+        transform.localScale = direction.x switch
+        {
+            < 0 => new Vector3(-1, 1, 1),
+            > 0 => new Vector3(1, 1, 1),
+            _ => transform.localScale
+        };
+        Animator.SetBool(WalkParameter, direction.magnitude > 0.1f);
     }
 }
