@@ -38,11 +38,12 @@ public class CharacterMovement : MonoBehaviour
 
     void Animate()
     {
+        Vector3 initScale = transform.localScale;
         Vector3 direction = targetPosition - transform.position;
         transform.localScale = direction.x switch
         {
-            < 0 => new Vector3(-1, 1, 1),
-            > 0 => new Vector3(1, 1, 1),
+            < 0 => new Vector3(Mathf.Abs(initScale.x) * -1, initScale.y, initScale.z),
+            > 0 => new Vector3(Mathf.Abs(initScale.x), initScale.y, initScale.z),
             _ => transform.localScale
         };
         Animator.SetBool(WalkParameter, direction.magnitude > 0.1f);
