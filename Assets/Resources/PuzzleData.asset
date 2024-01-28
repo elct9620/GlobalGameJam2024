@@ -17,3 +17,5 @@ MonoBehaviour:
     locks: 00000000
   - type: 2
     locks: 01000000
+  - type: 3
+    locks: 02000000

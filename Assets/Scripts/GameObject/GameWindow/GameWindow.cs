@@ -36,6 +36,7 @@ public class GameWindow : MonoBehaviour, IGameEventHandler<ResolveEvent>
                 loadingScreen.SetActive(false);
                 gameScreen.SetActive(true);
                 resultScreen.SetActive(false);
+                _puzzleCommand.Start(PuzzleType.GameScreen, Time.time);
                 break;
             case PuzzleType.GameScreen:
                 loadingScreen.SetActive(false);
