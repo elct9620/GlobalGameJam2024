@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8402357097838379060}
   - component: {fileID: 6621225021322965300}
   - component: {fileID: 5804802337406735613}
+  - component: {fileID: 1110386080682973379}
   m_Layer: 5
   m_Name: Gameexe
   m_TagString: Untagged
@@ -97,6 +98,41 @@ MonoBehaviour:
   cornerCountCooldown: 1
   escapeCooldown: 1
   isMoving: 1
+--- !u!58 &1110386080682973379
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324029468757110081}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 200
 --- !u!1 &4708203522843280551
 GameObject:
   m_ObjectHideFlags: 0
