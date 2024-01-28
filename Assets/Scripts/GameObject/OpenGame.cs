@@ -21,12 +21,9 @@ public class OpenGame : MonoBehaviour, IGameEventHandler<ResolveEvent>
         _resolveEvent.RemoveListener(this);
     }
     
-    void Update()
+    public void Open()
     {
-        if (allowOpen && Input.GetMouseButtonDown(0))
-        {
-            targetApplication.SetActive(true);
-        }
+        if (allowOpen) targetApplication.SetActive(true);
     }
 
     public void OnGameEvent(ResolveEvent payload)
