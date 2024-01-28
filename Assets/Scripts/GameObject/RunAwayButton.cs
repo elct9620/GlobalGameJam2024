@@ -40,7 +40,7 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
         originalSize = rectTransform.sizeDelta;
         thresholdDistance = Mathf.Max(originalSize.x, originalSize.y) * 2;
     }
-
+    
     public void OnDestroy()
     {
         _resolveEvent.RemoveListener(this);
