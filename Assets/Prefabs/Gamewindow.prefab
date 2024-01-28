@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 5510498245154253859}
+  gameScreen: {fileID: 7619694360852649327}
   resultScreen: {fileID: 3526739922290552215}
 --- !u!1 &2380412772209351563
 GameObject:
@@ -1349,6 +1350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game
       objectReference: {fileID: 0}
+    - target: {fileID: 3520139846325968386, guid: d9348c07136a04a2eb47aa96e03b6815, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1357,5 +1362,10 @@ PrefabInstance:
 --- !u!224 &6819562158421256374 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 560531623099720667, guid: d9348c07136a04a2eb47aa96e03b6815, type: 3}
+  m_PrefabInstance: {fileID: 6441443981675875181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7619694360852649327 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3520139846325968386, guid: d9348c07136a04a2eb47aa96e03b6815, type: 3}
   m_PrefabInstance: {fileID: 6441443981675875181}
   m_PrefabAsset: {fileID: 0}

@@ -10,6 +10,7 @@ using UnityEngine;
 public class GameWindow : MonoBehaviour, IGameEventHandler<ResolveEvent>
 {
     public GameObject loadingScreen;
+    public GameObject gameScreen;
     public GameObject resultScreen;
     
     [Inject] private readonly GameEvent<ResolveEvent> _resolveEvent;
@@ -29,10 +30,18 @@ public class GameWindow : MonoBehaviour, IGameEventHandler<ResolveEvent>
 
     public void OnGameEvent(ResolveEvent payload)
     {
-        if (payload.type == PuzzleType.LoadingScreen)
+        switch (payload.type)
         {
-            loadingScreen.SetActive(false);
-            resultScreen.SetActive(true);
+            case PuzzleType.LoadingScreen:
+                loadingScreen.SetActive(false);
+                gameScreen.SetActive(true);
+                resultScreen.SetActive(false);
+                break;
+            case PuzzleType.GameScreen:
+                loadingScreen.SetActive(false);
+                gameScreen.SetActive(false);
+                resultScreen.SetActive(true);
+                break;
         }
     }
 }
