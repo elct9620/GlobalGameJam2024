@@ -35,7 +35,7 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
     private void Start()
     {
         _resolveEvent.AddListener(this);
-        
+
         rectTransform = GetComponent<RectTransform>();
         originalSize = rectTransform.sizeDelta;
         thresholdDistance = Mathf.Max(originalSize.x, originalSize.y) * 2;
@@ -53,6 +53,8 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
             return;
         }
 
+        _puzzleCommand.Start(PuzzleType.BootProgram, Time.time);
+
         Vector2 mousePosition = Input.mousePosition;
         float distanceToMouse = Vector2.Distance(rectTransform.position, mousePosition);
 
@@ -66,11 +68,10 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
                     StartCoroutine(EnlargeAndResetSize());
                     cornerEscapeCount = 0;
                 }
+
                 lastEscapeTime = Time.time;
                 TeleportToSafePosition(); // 瞬間移動到安全位置
             }
-            
-            _puzzleCommand.Start(PuzzleType.BootProgram, Time.time);
         }
         else if (distanceToMouse <= thresholdDistance)
         {
@@ -104,7 +105,8 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
 
         while (elapsedTime < resetSizeAfterSeconds)
         {
-            rectTransform.sizeDelta = Vector2.Lerp(rectTransform.sizeDelta, targetSize, elapsedTime / resetSizeAfterSeconds);
+            rectTransform.sizeDelta =
+                Vector2.Lerp(rectTransform.sizeDelta, targetSize, elapsedTime / resetSizeAfterSeconds);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -112,7 +114,8 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
         elapsedTime = 0;
         while (elapsedTime < resetSizeAfterSeconds)
         {
-            rectTransform.sizeDelta = Vector2.Lerp(rectTransform.sizeDelta, originalSize, elapsedTime / resetSizeAfterSeconds);
+            rectTransform.sizeDelta =
+                Vector2.Lerp(rectTransform.sizeDelta, originalSize, elapsedTime / resetSizeAfterSeconds);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
@@ -122,38 +125,24 @@ public class RunAwayButton : MonoBehaviour, IGameEventHandler<ResolveEvent>
 
     private bool IsNearCorner(Vector2 position)
     {
-        float screenWidth  = Screen.width;
+        float screenWidth = Screen.width;
         float screenHeight = Screen.height;
 
-        bool nearTopLeft     = position.x < cornerEscapeDistance && position.y > screenHeight - cornerEscapeDistance;
-        bool nearTopRight    = position.x > screenWidth                                       - cornerEscapeDistance && position.y > screenHeight - cornerEscapeDistance;
-        bool nearBottomLeft  = position.x < cornerEscapeDistance                                                     && position.y < cornerEscapeDistance;
-        bool nearBottomRight = position.x > screenWidth - cornerEscapeDistance                                       && position.y < cornerEscapeDistance;
+        bool nearTopLeft = position.x < cornerEscapeDistance && position.y > screenHeight - cornerEscapeDistance;
+        bool nearTopRight = position.x > screenWidth - cornerEscapeDistance &&
+                            position.y > screenHeight - cornerEscapeDistance;
+        bool nearBottomLeft = position.x < cornerEscapeDistance && position.y < cornerEscapeDistance;
+        bool nearBottomRight = position.x > screenWidth - cornerEscapeDistance && position.y < cornerEscapeDistance;
 
         return nearTopLeft || nearTopRight || nearBottomLeft || nearBottomRight;
     }
 
-    private Vector2 GetDirectionAwayFromCorner(Vector2 position)
-    {
-        float screenWidth  = Screen.width;
-        float screenHeight = Screen.height;
-
-        if(position.x < screenWidth / 2 && position.y > screenHeight / 2)
-            return new Vector2(1, -1); // 從左上角逃逸
-        else if(position.x > screenWidth / 2 && position.y > screenHeight / 2)
-            return new Vector2(-1, -1); // 從右上角逃逸
-        else if(position.x < screenWidth / 2 && position.y < screenHeight / 2)
-            return new Vector2(1, 1); // 從左下角逃逸
-        else
-            return new Vector2(-1, 1); // 從右下角逃逸
-    }
-
     private Vector2 ClampToScreen(Vector2 position, RectTransform rectTransform)
     {
-        float width  = rectTransform.rect.width;
+        float width = rectTransform.rect.width;
         float height = rectTransform.rect.height;
 
-        position.x = Mathf.Clamp(position.x, width  / 2, Screen.width  - width  / 2);
+        position.x = Mathf.Clamp(position.x, width / 2, Screen.width - width / 2);
         position.y = Mathf.Clamp(position.y, height / 2, Screen.height - height / 2);
 
         return position;
