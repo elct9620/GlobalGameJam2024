@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 5136141979882332143}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 2536739992248437549}
   turnOn: {fileID: 5343159525157951899}
   turnOff: {fileID: 5820721213948848141}
 --- !u!82 &2536739992248437549
